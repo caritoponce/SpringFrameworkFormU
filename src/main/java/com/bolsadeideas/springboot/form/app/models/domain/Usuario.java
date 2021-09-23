@@ -1,16 +1,28 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class Usuario {
 	
+	private String identifier;
+	
 	@NotEmpty
+	private String name;
+	
+	@NotEmpty
+	private String lastname;
+	
+	@NotEmpty
+	@Size(min=3, max=8)
 	private String username;
 	
     @NotEmpty
 	private String password;
 	
     @NotEmpty
+    @Email
     private String email;
 
 	public String getUsername() {
@@ -35,6 +47,30 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 
 }
