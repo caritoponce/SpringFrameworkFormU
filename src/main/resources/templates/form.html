@@ -8,6 +8,15 @@
 	<h3 th:text="${titulo}"></h3>
 
 	<form th:action="@{/form}" th:object="${usuario}" method="post">
+	
+	    <div>
+			<label for="identifier">Identifier</label>
+			<div>
+				<input type="text" id="identifier" th:field="*{identifier}">
+			</div>
+			<div th:if="${#fields.hasErrors('identifier')}" th:errors="*{identifier}">
+			</div>
+		</div>
 
 		<div>
 			<label for="name">Name</label>
