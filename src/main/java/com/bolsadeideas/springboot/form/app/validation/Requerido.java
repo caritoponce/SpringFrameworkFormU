@@ -15,7 +15,7 @@ import javax.validation.Payload;
 @Target({ FIELD, METHOD })
 public @interface Requerido {
 
-	String message() default "el campo es requerido - con anotaciones";
+	String message() default "el campo es requerido - con anotacione";
 
 	Class<?>[] groups() default { };
 

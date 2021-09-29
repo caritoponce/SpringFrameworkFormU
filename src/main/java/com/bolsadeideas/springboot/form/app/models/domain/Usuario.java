@@ -1,11 +1,17 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
+import java.util.Date;
+
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Past;
 //import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 import com.bolsadeideas.springboot.form.app.validation.Requerido;
 
@@ -32,6 +38,16 @@ public class Usuario {
     @NotEmpty 
     @Email
     private String email;
+    
+        
+    @NotNull
+    @Min(5)
+    @Max(5000)
+    private Integer account;
+    
+    @NotNull
+    @Future
+    private Date birthdate;
 
 	public String getUsername() {
 		return username;
@@ -80,5 +96,23 @@ public class Usuario {
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
 	}
+
+	public Integer getAccount() {
+		return account;
+	}
+
+	public void setAccount(Integer account) {
+		this.account = account;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	
 
 }
