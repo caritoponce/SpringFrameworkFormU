@@ -4,6 +4,8 @@ package com.bolsadeideas.springboot.form.app.controllers;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -15,10 +17,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 
@@ -36,7 +40,16 @@ public class FormController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, "birthdate", new CustomDateEditor(dateFormat, false));
+		
+		binder.registerCustomEditor(String.class, "name", new NombreMayusculaEditor());
 	}
+	
+	@ModelAttribute("countries")
+	public List<String> countries(){
+		
+		return Arrays.asList("España", "Mexico", "Chile", "Argentina", "Perú", "Colombia", "Venezuela");
+	}
+	
 	
 	@GetMapping("/form")
 	public String form(Model model) {

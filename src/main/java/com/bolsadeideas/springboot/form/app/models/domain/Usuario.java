@@ -9,7 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-//import javax.validation.constraints.Past;
+import javax.validation.constraints.Past;
 //import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
@@ -46,8 +46,11 @@ public class Usuario {
     private Integer account;
     
     @NotNull
-    @Future
+    @Past
     private Date birthdate;
+    
+    @NotEmpty
+    private String country;
 
 	public String getUsername() {
 		return username;
@@ -111,6 +114,14 @@ public class Usuario {
 
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	

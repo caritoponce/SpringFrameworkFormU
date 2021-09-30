@@ -17,6 +17,18 @@
 			<div th:if="${#fields.hasErrors('identifier')}" th:errors="*{identifier}">
 			</div>
 		</div>
+		
+		<div>
+			<label for="country">Country</label>
+			<div>
+				<select id="country" th:field="*{country}" >
+				<option value="">-- Seleccionar --</option>
+				<option th:each="country: ${countries}" th:text="${country}" th:value="${country}"></option>
+				</select>
+			</div>
+			<div th:if="${#fields.hasErrors('country')}" th:errors="*{country}">
+			</div>
+		</div>
 
 		<div>
 			<label for="name">Name</label>
