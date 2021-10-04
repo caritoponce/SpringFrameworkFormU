@@ -16,7 +16,7 @@
 		<li th:text="${usuario.identifier}"></li>
 		<li th:text="${usuario.account}"></li>
 		<li th:text="${#dates.format(usuario.birthdate, 'dd/MM/yyyy')}"></li>		
-		<li th:text="${usuario.country}"></li>
+		<li th:text="${usuario.country.id}"></li>
 	</ul>
 </body>
 </html>

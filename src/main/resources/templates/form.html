@@ -19,14 +19,14 @@
 		</div>
 		
 		<div>
-			<label for="country">Country</label>
+			<label for="country.id">Country</label>
 			<div>
-				<select id="country" th:field="*{country}" >
+				<select id="country" th:field="*{country.id}" >
 				<option value="">-- Seleccionar --</option>
-				<option th:each="country: ${countriesMap.entrySet()}" th:text="${country.value}" th:value="${country.key}"></option>
+				<option th:each="country: ${listCountries}" th:text="${country.name}" th:value="${country.id}"></option>
 				</select>
 			</div>
-			<div th:if="${#fields.hasErrors('country')}" th:errors="*{country}">
+			<div th:if="${#fields.hasErrors('country.id')}" th:errors="*{country.id}">
 			</div>
 		</div>
 

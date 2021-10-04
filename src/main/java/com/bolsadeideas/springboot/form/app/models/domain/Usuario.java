@@ -49,8 +49,7 @@ public class Usuario {
     @Past
     private Date birthdate;
     
-    @NotEmpty
-    private String country;
+    private Pais country;
 
 	public String getUsername() {
 		return username;
@@ -116,11 +115,11 @@ public class Usuario {
 		this.birthdate = birthdate;
 	}
 
-	public String getCountry() {
+	public Pais getCountry() {
 		return country;
 	}
 
-	public void setCountry(String country) {
+	public void setCountry(Pais country) {
 		this.country = country;
 	}
 
