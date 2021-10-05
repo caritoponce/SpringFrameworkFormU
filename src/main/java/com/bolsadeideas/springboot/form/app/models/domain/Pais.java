@@ -1,7 +1,9 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
-public class Pais {
-	
+
+
+public class Pais {	
+
 	private Integer id;
 	
 	private String code;

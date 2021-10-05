@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.form.app.controllers;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +24,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
+import com.bolsadeideas.springboot.form.app.editors.PaisPropertyEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
+import com.bolsadeideas.springboot.form.app.services.PaisService;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 
 @Controller
@@ -33,6 +36,12 @@ public class FormController {
 
 	@Autowired
 	private UsuarioValidador validador;
+	
+	@Autowired
+	private PaisService paisService;
+	
+	@Autowired
+	private PaisPropertyEditor paisEditor;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -43,18 +52,36 @@ public class FormController {
 		binder.registerCustomEditor(Date.class, "birthdate", new CustomDateEditor(dateFormat, false));
 
 		binder.registerCustomEditor(String.class, "name", new NombreMayusculaEditor());
+		
+		binder.registerCustomEditor(Pais.class, "country", paisEditor);
 	}
 
 	@ModelAttribute("listCountries")
 	public List<Pais> listCountries() {
 
-		return Arrays.asList(new Pais(1, "ES", "España"), 
-				new Pais(2, "MX", "Mexico"), 
-				new Pais(3, "CL", "Chile"),
-				new Pais(4, "AR", "Argentina"), 
-				new Pais(5, "PE", "Perú"), 
-				new Pais(6, "CO", "Colombia"),
-				new Pais(7, "VE", "Venezuela"));
+		return paisService.listar();
+
+	}
+	
+	@ModelAttribute("listaRolesString")
+	public List<String> listaRolesString(){
+		
+		List<String> roles= new ArrayList<String>();
+		roles.add("ROLE_ADMIN");
+		roles.add("ROLE_USER");
+		roles.add("ROLE_MODERATOR");
+		return roles;
+	}
+	
+	@ModelAttribute("listaRolesMap")
+	public Map<String, String> listaRolesMap() {
+
+		Map<String, String> roles = new HashMap<String, String>();
+		roles.put("ROLE_ADMIN", "Administrador");
+		roles.put("ROLE_USER", "Usuario");
+		roles.put("ROLE_MODERATOR", "Moderador");	
+
+		return roles;
 
 	}
 
