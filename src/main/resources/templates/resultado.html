@@ -19,10 +19,11 @@
 		<li th:text="${usuario.country.id}"></li>
 		<li th:text="${usuario.country.code}"></li>
 		<li th:text="${usuario.country.name}"></li>
+		<li th:text="'Habilitado: ' + ${usuario.habilitar}"></li>
 	</ul>
 	 <div>Roles</div>
 	 <ul>
-	  <li th:each="role: ${usuario.roles}" th:text="${role}"></li>
+	  <li th:each="role: ${usuario.roles}" th:text="${role.id}  + ': ' + ${role.nombre} + ' => ' + ${role.role}"></li>
 	 </ul>	
 </body>
 </html>

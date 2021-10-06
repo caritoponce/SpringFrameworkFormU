@@ -55,7 +55,9 @@ public class Usuario {
     private Pais country;
     
     @NotEmpty
-    private List<String> roles;
+    private List<Role> roles;
+    
+    private Boolean habilitar;
 
 	public String getUsername() {
 		return username;
@@ -129,12 +131,20 @@ public class Usuario {
 		this.country = country;
 	}
 
-	public List<String> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<String> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Boolean getHabilitar() {
+		return habilitar;
+	}
+
+	public void setHabilitar(Boolean habilitar) {
+		this.habilitar = habilitar;
 	}
 
 	

@@ -25,9 +25,12 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.editors.PaisPropertyEditor;
+import com.bolsadeideas.springboot.form.app.editors.RolesEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
+import com.bolsadeideas.springboot.form.app.models.domain.Role;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.services.PaisService;
+import com.bolsadeideas.springboot.form.app.services.RoleService;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 
 @Controller
@@ -41,7 +44,13 @@ public class FormController {
 	private PaisService paisService;
 	
 	@Autowired
+	private RoleService rolService;
+	
+	@Autowired
 	private PaisPropertyEditor paisEditor;
+	
+	@Autowired
+	private RolesEditor roleEditor;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -54,6 +63,7 @@ public class FormController {
 		binder.registerCustomEditor(String.class, "name", new NombreMayusculaEditor());
 		
 		binder.registerCustomEditor(Pais.class, "country", paisEditor);
+		binder.registerCustomEditor(Role.class, "roles", roleEditor);
 	}
 
 	@ModelAttribute("listCountries")
@@ -83,6 +93,12 @@ public class FormController {
 
 		return roles;
 
+	}
+	
+	@ModelAttribute("listaRoles")
+	public List<Role> listaRoles(){
+		
+		return rolService.listar();
 	}
 
 	@ModelAttribute("countries")
@@ -114,6 +130,7 @@ public class FormController {
 		usuario.setName("John");
 		usuario.setLastname("Doe");
 		usuario.setIdentifier("123.456.789-K");
+		usuario.setHabilitar(true);
 		model.addAttribute("titulo", "Formulario  usuario");
 		model.addAttribute("usuario", usuario);
 		return "form";
